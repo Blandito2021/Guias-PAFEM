@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guías de Física PAFEM</title>
+<meta name="description" content="Guías-taller interactivas de Física para la educación media (grados 10.° y 11.°) del Programa PAFEM, Pereira.">
+<meta name="author" content="Luis Hernando Blandón Dávila — Coordinador de Física PAFEM">
+<meta name="copyright" content="© 2026 Luis Hernando Blandón Dávila. Todos los derechos reservados.">
+<!-- © 2026 Luis Hernando Blandón Dávila. Todos los derechos reservados. Prohibida su copia, modificación o distribución, total o parcial, sin autorización escrita del autor. -->
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#ffffff; --ink:#14213d; --muted:#5b6478; --line:#dfe3ee;
+    --accent:#1d4ed8; --accent-ink:#ffffff; --chip:#e8eefc; --chip-ink:#1e3a8a; --hero1:#0f1f4a; --hero2:#1d4ed8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1120; --card:#131c31; --ink:#e7ecf7; --muted:#9aa6bf; --line:#24304a;
+      --accent:#60a5fa; --accent-ink:#0b1120; --chip:#1c2a47; --chip-ink:#bcd3ff; --hero1:#0b1736; --hero2:#1e3a8a;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+  header{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:2.6rem 1rem 3.2rem}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+  .kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin:0 0 .4rem}
+  h1{font-size:clamp(1.7rem,4.5vw,2.6rem);margin:0 0 .6rem;line-height:1.15}
+  .lead{max-width:640px;margin:0;opacity:.92;font-size:1.02rem}
+  main{margin-top:-1.8rem;padding-bottom:2.5rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.1rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(15,23,42,.08)}
+  .thumb{aspect-ratio:16/9;background:var(--chip);overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+  .chips{display:flex;flex-wrap:wrap;gap:.35rem}
+  .chip{background:var(--chip);color:var(--chip-ink);font-size:.74rem;font-weight:600;padding:.15rem .6rem;border-radius:999px}
+  h2{font-size:1.18rem;margin:0}
+  .card p{margin:0;color:var(--muted);font-size:.93rem}
+  .btn{margin-top:auto;align-self:flex-start;background:var(--accent);color:var(--accent-ink);text-decoration:none;
+    font-weight:700;padding:.6rem 1.1rem;border-radius:10px;font-size:.95rem}
+  .btn:hover,.btn:focus-visible{filter:brightness(1.08);outline:2px solid transparent}
+  .btn:focus-visible{box-shadow:0 0 0 3px var(--chip)}
+  .info{margin-top:1.8rem;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem 1.2rem}
+  .info h3{margin:.1rem 0 .4rem;font-size:1.02rem}
+  .info ul{margin:0;padding-left:1.2rem;color:var(--muted);font-size:.93rem}
+  footer{border-top:1px solid var(--line);padding:1.3rem 0 2rem;color:var(--muted);font-size:.82rem;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="kicker">Programa de Fortalecimiento de la Educación Media · PAFEM · Pereira</p>
+    <h1>Guías interactivas de Física</h1>
+    <p class="lead">Guías-taller con teoría, simuladores y taller autocalificable para estudiantes de grados 10.° y 11.° y sus profesores. Elija una guía para empezar.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+
+    <!-- ===== GUÍA: Leyes de Newton =====
+         Para agregar una guía nueva: copie este bloque <article> completo,
+         cambie la carpeta del enlace (href), la imagen, el título y la descripción. -->
+    <article class="card">
+      <div class="thumb"><img src="Leyes_de_Newton/imagenes/dinamica1.webp" alt="Ilustración de la guía de dinámica y las leyes de Newton" loading="lazy"></div>
+      <div class="body">
+        <div class="chips"><span class="chip">Grado 10.°</span><span class="chip">Mecánica</span></div>
+        <h2>Dinámica: las leyes de Newton</h2>
+        <p>Inercia, fuerza neta y aceleración, acción y reacción, diagramas de cuerpo libre, fricción, plano inclinado y máquina de Atwood, con simuladores.</p>
+        <a class="btn" href="Leyes_de_Newton/">Abrir guía →</a>
+      </div>
+    </article>
+
+    <!-- ===== GUÍA: Óptica geométrica ===== -->
+    <article class="card">
+      <div class="thumb"><img src="optica_geometrica/assets/ley_de_snell_refraccion.webp" alt="Ilustración de la refracción de la luz y la ley de Snell" loading="lazy"></div>
+      <div class="body">
+        <div class="chips"><span class="chip">Grado 11.°</span><span class="chip">Óptica</span></div>
+        <h2>Óptica geométrica</h2>
+        <p>Reflexión y refracción, ley de Snell, reflexión interna total, espejos planos y curvos, lentes delgadas y el ojo humano, con laboratorio virtual.</p>
+        <a class="btn" href="optica_geometrica/">Abrir guía →</a>
+      </div>
+    </article>
+
+    <!-- ===== GUÍA: Trabajo, potencia y energía =====
+         Esta guía ya está publicada en su propio repositorio (Guia-Trabajo-potencia-y-Energia);
+         la tarjeta enlaza a esa dirección, por eso no tiene carpeta dentro de COLEGIOS_PAFEM. -->
+    <article class="card">
+      <div class="thumb"><img src="https://blandito2021.github.io/Guia-Trabajo-potencia-y-Energia/imagenes/imagen1.webp" alt="Ilustración de la guía de trabajo, potencia y energía" loading="lazy"></div>
+      <div class="body">
+        <div class="chips"><span class="chip">Grados 10.° y 11.°</span><span class="chip">Energía</span></div>
+        <h2>Trabajo, potencia y energía</h2>
+        <p>Trabajo de una fuerza, potencia, teorema trabajo–energía, energía cinética y potencial, y conservación de la energía.</p>
+        <a class="btn" href="https://blandito2021.github.io/Guia-Trabajo-potencia-y-Energia/">Abrir guía →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="info">
+    <h3>Indicaciones</h3>
+    <ul>
+      <li>Las guías funcionan en computador, tableta y celular, en cualquier navegador actualizado.</li>
+      <li>Las respuestas del taller se guardan en el navegador del dispositivo que use; termine en el mismo equipo o exporte el PDF.</li>
+      <li>Docentes: los solucionarios se comparten por aparte con el coordinador.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Coordinación de Física PAFEM · Luis Hernando Blandón Dávila<br>
+    © 2026 Luis Hernando Blandón Dávila · Todos los derechos reservados. Prohibida su copia, modificación o distribución sin autorización del autor.
+  </div>
+</footer>
+</body>
+</html>

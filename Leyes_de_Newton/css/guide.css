@@ -1,0 +1,8 @@
+/* Personalización visual de esta guía */
+:root {
+  --accent: #1d4ed8;
+  --accent-2: #f97316;
+}
+/* Figuras SVG más compactas al imprimir (caben en carta) */
+body.print-measure .svg-figure svg { max-height: 2.0in !important; }
+@media print { .svg-figure svg { max-height: 2.0in !important; } }

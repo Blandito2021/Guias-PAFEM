@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Taller Interactivo de Física: Óptica Geométrica, Leyes de Snell, Espejos, Lentes y Ojo Humano | PAFEM</title>
+  <meta name="description" content="Taller-Guía interactivo de Física sobre Óptica Geométrica, Reflexión, Refracción, Leyes de Snell, Espejos Planos y Curvos, Lentes Delgadas y Óptica Ocular para las I.E. Diego Maya Salazar, Jaime Salazar Robledo y Hugo Ángel Mejía.">
+  <meta name="author" content="Luis Hernando Blandón Dávila — Coordinador de Física PAFEM">
+  <meta name="copyright" content="© 2026 Luis Hernando Blandón Dávila. Todos los derechos reservados.">
+  <!-- © 2026 Luis Hernando Blandón Dávila. Todos los derechos reservados. Prohibida su copia, modificación o distribución, total o parcial, sin autorización escrita del autor. -->
+  <meta name="theme-color" content="#0a0f1d">
+
+  <!-- Fuentes Tipográficas Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- KaTeX para tipografía matemática de alta precisión -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <!-- html2pdf para generación directa de PDF tamaño carta -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+
+  <!-- Hoja de estilos del sistema de diseño -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="theme-dark">
+
+  <!-- ========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (ACCESIBLE, STICKY CON PROGRESO)
+       ======================================================================== -->
+  <header class="top-navbar" role="banner">
+    <div class="brand-section">
+      <div class="brand-icon" aria-hidden="true">
+        <i class="fas fa-atom"></i>
+      </div>
+      <div class="brand-text">
+        <h1>FÍSICA PAFEM — ÓPTICA GEOMÉTRICA</h1>
+        <p>Luis Hernando Blandón Dávila — Coordinador de Física PAFEM</p>
+      </div>
+    </div>
+
+    <!-- Navegación entre Hojas Formato Carta (8 Hojas) -->
+    <nav class="nav-pages" aria-label="Navegación de hojas de la guía">
+      <button type="button" class="nav-tab-btn" id="btnNavHome" title="Volver a la portada de inicio">
+        <i class="fas fa-home"></i> Inicio
+      </button>
+      <button type="button" class="nav-tab-btn active" data-page="sheet-1" id="navTab1">
+        <span class="badge-num">1</span> Portada
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-2" id="navTab2">
+        <span class="badge-num">2</span> Luz &amp; Reflexión
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-3" id="navTab3">
+        <span class="badge-num">3</span> Refracción &amp; RIT
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-4" id="navTab4">
+        <span class="badge-num">4</span> Espejos &amp; Lentes
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-5" id="navTab5">
+        <span class="badge-num">5</span> Ojo &amp; Visión
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-6" id="navTab6">
+        <span class="badge-num">6</span> Laboratorio
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-7" id="navTab7">
+        <span class="badge-num">7</span> Taller
+      </button>
+      <button type="button" class="nav-tab-btn" data-page="sheet-8" id="navTab8">
+        <span class="badge-num">8</span> Entrega &amp; PDF
+      </button>
+    </nav>
+
+    <!-- Acciones Rápidas y Selector de Temas Visuales -->
+    <div class="navbar-actions">
+      <div class="quick-sim-buttons" style="display:flex; gap:0.4rem; align-items:center;">
+        <button type="button" class="nav-action-pill" id="btnNavQuickMirrors" title="Ir a la simulación interactiva de espejos">
+          <i class="fas fa-circle-notch"></i> Sim. Espejos
+        </button>
+        <button type="button" class="nav-action-pill" id="btnNavQuickLenses" title="Ir a la simulación interactiva de lentes">
+          <i class="fas fa-compress-arrows-alt"></i> Sim. Lentes
+        </button>
+      </div>
+
+      <div class="theme-selector-dropdown">
+        <button type="button" class="btn-theme-selector" id="btnThemeMenu" aria-expanded="false" title="Cambiar estética y temas de diseño">
+          <i class="fas fa-palette"></i> <span>Estilos (5)</span> <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i>
+        </button>
+        <div class="theme-dropdown-menu" id="themeMenuPopover" role="menu">
+          <div class="theme-menu-header">
+            <span>Seleccionar Estilo</span>
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-glassmorphism">
+            <span class="theme-preview-dot" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"></span>
+            <span>🧊 Vidriomorfismo (Glassmorphism)</span>
+          </button>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-neumorphism">
+            <span class="theme-preview-dot" style="background: #e2e8f0; box-shadow: inset 2px 2px 4px #bec5ce;"></span>
+            <span>🔘 Neomorfismo Suave (Tactile Clay)</span>
+          </button>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-bentogrid">
+            <span class="theme-preview-dot" style="background: linear-gradient(135deg, #818cf8, #a855f7);"></span>
+            <span>🍱 Bento Grid Cyber (Modular)</span>
+          </button>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-minimalism">
+            <span class="theme-preview-dot" style="background: #ffffff; border: 2px solid #000;"></span>
+            <span>📐 Minimalismo Audaz (Swiss Bold)</span>
+          </button>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-neobrutalism">
+            <span class="theme-preview-dot" style="background: #fef08a; border: 2px solid #000;"></span>
+            <span>⚡ Neo-Brutalismo (Pop Physics)</span>
+          </button>
+          <div style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 0.2rem; padding-top: 0.2rem;"></div>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-dark">
+            <span class="theme-preview-dot" style="background: #090d16;"></span>
+            <span>🌙 Modo Oscuro Clásico</span>
+          </button>
+          <button type="button" class="theme-option-btn" data-set-theme="theme-light">
+            <span class="theme-preview-dot" style="background: #ffffff;"></span>
+            <span>☀️ Modo Claro Clásico</span>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="btn-action btn-pdf" id="btnExportPdfTop" title="Descargar Guía en PDF Tamaño Carta">
+        <i class="fas fa-file-pdf"></i> <span>Exportar PDF</span>
+      </button>
+    </div>
+
+    <!-- Barra de progreso de lectura horizontal integrada -->
+    <div class="nav-progress-container" aria-hidden="true">
+      <div class="nav-progress-bar" id="navProgressBar"></div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CONTENEDOR GENERAL DE HOJAS TAMAÑO CARTA (LETTER VERTICAL)
+       ======================================================================== -->
+  <main class="sheets-wrapper" id="sheetsContainer">
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 1: PORTADA, DATOS DE IDENTIFICACIÓN, TU MISIÓN & DIRECTRICES
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-1" aria-labelledby="h1-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">PAFEM</div>
+          <div class="sheet-title-group">
+            <h2>PROGRAMA DE FORTALECIMIENTO DE LA EDUCACIÓN MEDIA</h2>
+            <p>Área de Ciencias Naturales y Educación Ambiental: Física de Grado 11°</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Óptica Geométrica &amp; Visión</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <div class="cover-hero">
+          <div class="cover-badge-top">
+            <i class="fas fa-graduation-cap"></i> Proyecto Pedagógico Intercolegiado — Pereira (Risaralda)
+          </div>
+          <h1 id="h1-title">ÓPTICA GEOMÉTRICA: <span>LEYES DE SNELL, ESPEJOS, LENTES Y EL OJO HUMANO</span></h1>
+          <p class="lead">Laboratorio Virtual Interactivo, Modelamiento Físico Cuantitativo y Corrección de Defectos Visuales</p>
+        </div>
+
+        <!-- SECCIÓN: TU MISIÓN COMO INVESTIGADOR CIENTÍFICO -->
+        <article class="mission-banner" style="background: linear-gradient(135deg, #1e3a8a, #0369a1); color: #ffffff; border-radius: var(--radius-md); padding: 0.85rem 1.1rem; margin-bottom: 0.85rem; box-shadow: 0 4px 15px rgba(3, 105, 161, 0.25);">
+          <h3 style="font-size: 0.96rem; font-weight: 800; display:flex; align-items:center; gap:0.45rem; margin-bottom: 0.35rem; color:#facc15;">
+            <i class="fas fa-compass"></i> TU MISIÓN COMO INVESTIGADOR CIENTÍFICO
+          </h3>
+          <p style="font-size: 0.79rem; line-height: 1.5; opacity: 0.96;">
+            Durante este taller actuarás como un <strong>investigador de la luz</strong>. Experimentarás en tiempo real con rayos luminosos, medios de distinta densidad óptica, espejos planos, espejos esféricos cóncavos y convexos, lentes delgadas y la anatomía óptica del ojo humano. Descubrirás cómo se comporta la luz y aplicarás modelos matemáticos rigurosos para explicar y argumentar los fenómenos observados.
+          </p>
+        </article>
+
+        <!-- Formulario de Identificación del Estudiante con botones requeridos -->
+        <article class="student-data-card" aria-labelledby="student-data-title">
+          <h3 id="student-data-title"><i class="fas fa-id-card"></i> Datos de Identificación del Estudiante</h3>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="inputStudentName">Nombre Completo del Estudiante:</label>
+              <input type="text" id="inputStudentName" class="form-control" placeholder="Ej: Juan Sebastián Ramírez Morales" required autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="selectSchool">Nombre de la Institución:</label>
+              <select id="selectSchool" class="form-control">
+                <option value="I.E. Diego Maya Salazar">Institución Educativa Diego Maya Salazar</option>
+                <option value="I.E. Jaime Salazar Robledo">Institución Educativa Jaime Salazar Robledo</option>
+                <option value="I.E. Hugo Ángel Mejía">Institución Educativa Hugo Ángel Mejía</option>
+                <option value="Otra">Otra Institución Educativa...</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="customSchoolWrapper" style="display: none;">
+              <label for="inputCustomSchool">Nombre Institución:</label>
+              <input type="text" id="inputCustomSchool" class="form-control" placeholder="Nombre completo del colegio">
+            </div>
+
+            <div class="form-group">
+              <label for="selectGrade">Grado y Grupo:</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <select id="selectGrade" class="form-control" style="flex: 1;">
+                  <option value="11°">11° (Undécimo)</option>
+                  <option value="10°">10° (Décimo)</option>
+                </select>
+                <input type="text" id="inputGroup" class="form-control" placeholder="Grupo (1, 2, 3)" value="1" style="width: 80px;">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputDate">Fecha:</label>
+              <input type="text" id="inputDate" class="form-control" value="07/10/2026" readonly>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.65rem; margin-top: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-action btn-primary" id="btnStartWorkshop">
+              <i class="fas fa-play"></i> INICIAR TALLER
+            </button>
+            <button type="button" class="btn-action btn-secondary" id="btnValidateData">
+              <i class="fas fa-user-check"></i> VALIDAR DATOS
+            </button>
+          </div>
+        </article>
+
+        <!-- Indicaciones y Mandato de Transcripción Manual -->
+        <aside class="instructions-alert" role="note">
+          <h4><i class="fas fa-exclamation-circle"></i> Directrices Metodológicas Obligatorias — Profesores de la institución, coordinador proyecto PAFEM fisica: Luis Hernando Blandón D.</h4>
+          <p>Apreciados estudiantes de las instituciones <strong>Diego Maya Salazar, Jaime Salazar Robledo y Hugo Ángel Mejía</strong>:</p>
+          <ul>
+            <li><strong>MANDATO DE TRANSCRIPCIÓN MANUAL:</strong> Todo el desarrollo analítico, esquemas ópticos trazados con regla y transportador, tablas de datos experimentales, diagramas de rayos y los cálculos numéricos paso a paso con sus despejes algebraicos <em>deben ser transcritos de puño y letra en el cuaderno oficial de física o en hojas de block cuadriculado tamaño carta</em>.</li>
+            <li><strong>Criterio de Evaluación Estética:</strong> Se exigirá una excelente presentación, orden lógico, pulcritud, caligrafía clara y sustentación rigurosa de cada resultado físico con sus respectivas unidades de medida ($\text{m/s}$, $\text{nm}$, grados sexagesimales, dioptrías).</li>
+            <li><strong>Uso del Laboratorio Virtual:</strong> Utiliza el simulador integrado en la Hoja 6 para comprobar empíricamente cada predicción teórica, trazar rayos en espejos curvos, experimentar con el ojo humano y verificar tus cálculos numéricos antes de consignarlos en tu informe.</li>
+          </ul>
+        </aside>
+
+        <!-- Botones de Navegación Entre Hojas -->
+        <div class="sheet-nav-controls">
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 1 de 8: Inicio y Misión</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-2">
+            Siguiente: Luz &amp; Reflexión <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 1 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 2: INTRODUCCIÓN A LA ÓPTICA, LA LUZ, REFLEXIÓN Y ESPEJOS PLANOS
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-2" aria-labelledby="h2-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">TEORÍA I</div>
+          <div class="sheet-title-group">
+            <h2 id="h2-title">INTRODUCCIÓN A LA ÓPTICA, LA LUZ Y REFLEXIÓN</h2>
+            <p>¿Qué estudia la óptica? Propagación, rayos, haces y espejos planos</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Reflexión &amp; Espejos Planos</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <!-- Preguntas Problema Motivadoras -->
+        <article style="background:#f1f5f9; border-left:4px solid #2563eb; padding:0.6rem 0.9rem; border-radius:var(--radius-sm); margin-bottom:0.75rem;">
+          <h4 style="font-size:0.84rem; color:#0f172a; margin-bottom:0.25rem;"><i class="fas fa-question-circle"></i> Preguntas Problema para Despertar la Curiosidad Científica</h4>
+          <p style="font-size:0.76rem; color:#334155; line-height:1.45;">
+            ¿Por qué podemos ver los objetos que nos rodean? ¿Cómo viaja la luz a través del espacio? ¿Por qué un lápiz parece quebrarse al sumergirlo en un vaso con agua? ¿Cómo consigue un espejo plano devolver una imagen simétrica? ¿Cómo logran las gafas enfocar el mundo para una persona miope? A lo largo de esta guía responderás científicamente cada una de estas interrogantes.
+          </p>
+        </article>
+
+        <div class="theory-columns">
+          <div class="theory-block">
+            <h3><i class="fas fa-lightbulb"></i> 1. Naturaleza y Propagación de la Luz</h3>
+            <p>
+              La luz es radiación electromagnética visible para el ojo humano (longitudes de onda entre $\approx 380\text{ nm}$ y $750\text{ nm}$). En medios homogéneos e isótropos se propaga en <strong>línea recta</strong> a una velocidad universal máxima en el vacío de $c \approx 3.00 \times 10^8\text{ m/s}$.
+            </p>
+            <ul style="padding-left:1.1rem; font-size:0.76rem; color:#334155; margin-bottom:0.3rem;">
+              <li><strong>Rayos de Luz:</strong> Líneas imaginarias perpendiculares a los frentes de onda que indican la dirección de propagación rectilínea.</li>
+              <li><strong>Haces de Luz:</strong> Conjunto ordenado de rayos luminosos (paralelos, divergentes o convergentes).</li>
+              <li><strong>Medios Materiales:</strong> Transparentes (dejan pasar la luz sin dispersión perceptible), translúcidos (la transmiten pero dispersándola, impidiendo visión nítida) y opacos (absorben o reflejan la luz impidiendo su paso).</li>
+            </ul>
+
+            <h3 style="margin-top:0.35rem;"><i class="fas fa-mirror"></i> 2. Ley de la Reflexión</h3>
+            <p>
+              Cuando un rayo incide sobre una superficie reflectante pulida, regresa al medio inicial cumpliendo:
+            </p>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$\theta_i = \theta_r$$
+              <div class="formula-caption">El ángulo de incidencia es idéntico al ángulo de reflexión</div>
+            </div>
+            <p style="font-size:0.74rem; color:#64748b;">
+              <em>Regla de Oro:</em> El rayo incidente, la <strong>recta normal punteada</strong> (perpendicular a la superficie en el punto de incidencia) y el rayo reflejado pertenecen siempre al mismo plano geométrico.
+            </p>
+          </div>
+
+          <div class="theory-block">
+            <h3><i class="fas fa-clone"></i> 3. Espejos Planos y Formación de Imágenes</h3>
+            <p>
+              Un espejo plano es una superficie reflectante perfectamente lisa. Al colocarse un objeto frente a él, los rayos reflejados divergen, pero el ojo humano prolonga sus trayectorias en línea recta hacia atrás del espejo:
+            </p>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$d_i = -d_o \quad;\quad m = -\frac{d_i}{d_o} = +1$$
+              <div class="formula-caption">Distancia objeto igual a distancia imagen ($m = 1$, mismo tamaño)</div>
+            </div>
+            <ul style="padding-left:1.1rem; font-size:0.76rem; color:#334155;">
+              <li><strong>Virtual:</strong> Se forma por la intersección de las prolongaciones de los rayos reflejados, no por rayos reales convergentes (no puede proyectarse en una pantalla).</li>
+              <li><strong>Derecha:</strong> Conserva la misma orientación vertical que el objeto original.</li>
+              <li><strong>Simétrica:</strong> Se encuentra situada exactamente a la misma distancia detrás del espejo ($|d_i| = d_o$) con inversión lateral (la mano derecha parece la izquierda).</li>
+            </ul>
+            <div style="margin-top:0.45rem;">
+              <button type="button" class="btn-chip highlight" id="btnGoToMirrorSimFromH2">
+                <i class="fas fa-circle-notch"></i> Ver Simulación Interactiva de Espejos (Hoja 4)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <figure class="image-card" id="fig1Card" style="margin-top:0.6rem;">
+          <div class="image-card-wrapper" data-lightbox-src="assets/ley_de_snell_refraccion.webp" data-lightbox-caption="Figura 1: Interfaz óptica aire-agua. Ley de la Reflexión y Ley de Snell.">
+            <span class="image-zoom-pill"><i class="fas fa-search-plus"></i> Ampliar</span>
+            <img src="assets/ley_de_snell_refraccion.webp" alt="Diagrama pedagógico de la Ley de Snell" loading="lazy" style="height: 190px; object-fit: contain;">
+          </div>
+          <figcaption class="caption" style="font-size:0.72rem;">
+            <strong>Figura 1:</strong> Interfaz óptica de separación aire-agua. Obsérvese el rayo incidente a $50.0^\circ$, la recta normal punteada, el rayo reflejado simétrico a $50.0^\circ$ y el rayo refractado desviado hacia la normal a $35.2^\circ$.
+          </figcaption>
+        </figure>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-1">
+            <i class="fas fa-arrow-left"></i> Anterior: Portada
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 2 de 8: Luz &amp; Reflexión</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-3">
+            Siguiente: Refracción &amp; RIT <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 2 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 3: REFRACCIÓN DE LA LUZ, LEY DE SNELL Y REFLEXIÓN INTERNA TOTAL
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-3" aria-labelledby="h3-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">TEORÍA II</div>
+          <div class="sheet-title-group">
+            <h2 id="h3-title">REFRACCIÓN DE LA LUZ &amp; REFLEXIÓN INTERNA TOTAL</h2>
+            <p>Leyes de Snell-Descartes, índice de refracción, ángulo crítico y fibra óptica</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Leyes de Snell &amp; RIT</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <div class="theory-columns">
+          <div class="theory-block">
+            <h3><i class="fas fa-bezier-curve"></i> 4. Ley de Refracción (Snell-Descartes)</h3>
+            <p>
+              La refracción es el cambio de velocidad y dirección que experimenta una onda luminosa al atravesar oblicuamente la interfaz entre dos medios de distinta densidad óptica:
+            </p>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$n_1 \cdot \sin(\theta_1) = n_2 \cdot \sin(\theta_2)$$
+              <div class="formula-caption">Ley fundamental de Snell-Descartes</div>
+            </div>
+            <p style="font-size:0.76rem; color:#334155;">
+              <strong>Comportamiento físico del haz refractado:</strong>
+              <br>&bull; Si $n_2 &gt; n_1$ (pasa a medio más refringente): La luz se frena ($v_2 &lt; v_1$) y el rayo <em>se acerca a la recta normal</em> ($\theta_2 &lt; \theta_1$).
+              <br>&bull; Si $n_2 &lt; n_1$ (pasa a medio menos refringente): La luz se acelera ($v_2 &gt; v_1$) y el rayo <em>se aleja de la recta normal</em> ($\theta_2 &gt; \theta_1$).
+            </p>
+
+            <table class="table-indices" summary="Tabla de índices de refracción absolutos de sustancias comunes" style="margin-top:0.4rem;">
+              <thead>
+                <tr>
+                  <th>Sustancia</th>
+                  <th>Índice ($n$)</th>
+                  <th>Velocidad $v$ ($\times 10^8\text{ m/s}$)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Aire / Vacío</td><td>1.000</td><td>3.00</td></tr>
+                <tr><td>Agua pura (20°C)</td><td>1.333</td><td>2.25</td></tr>
+                <tr><td>Etanol</td><td>1.361</td><td>2.20</td></tr>
+                <tr><td>Vidrio Crown</td><td>1.520</td><td>1.97</td></tr>
+                <tr><td>Diamante natural</td><td>2.417</td><td>1.24</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="theory-block">
+            <h3><i class="fas fa-infinity"></i> 5. Ángulo Crítico y Reflexión Interna Total</h3>
+            <p>
+              Cuando la luz intenta salir de un medio más denso hacia uno menos denso ($n_1 &gt; n_2$), el rayo refractado se aleja progresivamente de la normal hasta que, para un ángulo de incidencia específico llamado <strong>ángulo crítico</strong> ($\theta_c$), el rayo refractado emerge exactamente a $90^\circ$ rasante a la superficie:
+            </p>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$\sin(\theta_c) = \frac{n_2}{n_1} \implies \theta_c = \arcsin\left(\frac{n_2}{n_1}\right)$$
+              <div class="formula-caption">Condición estricta: $n_1 > n_2$</div>
+            </div>
+            <p style="font-size:0.75rem; color:#334155;">
+              <strong>Fenómeno de Reflexión Interna Total (RIT):</strong>
+              <br>Si el ángulo de incidencia supera el ángulo crítico ($\theta_1 &gt; \theta_c$), <strong>no existe rayo refractado</strong>: el $100\%$ de la energía luminosa se refleja íntegramente de vuelta al medio 1. Este principio es el pilar de las telecomunicaciones por <strong>fibra óptica</strong> y de los prismas de reflexión total.
+            </p>
+          </div>
+        </div>
+
+        <figure class="image-card" id="fig2Card" style="margin-top:0.6rem;">
+          <div class="image-card-wrapper" data-lightbox-src="assets/reflexion_interna_total.webp" data-lightbox-caption="Figura 2: Refracción y Reflexión Interna Total al superar el ángulo crítico.">
+            <span class="image-zoom-pill"><i class="fas fa-search-plus"></i> Ampliar</span>
+            <img src="assets/reflexion_interna_total.webp" alt="Infografía de Reflexión Interna Total" loading="lazy" style="height: 190px; object-fit: contain; background:#fff;">
+          </div>
+          <figcaption class="caption" style="font-size:0.72rem;">
+            <strong>Figura 2:</strong> Condiciones de la RIT: incidencia desde el agua ($n_1 = 1.33$) hacia el aire ($n_2 = 1.00$). Al superar $\theta_c \approx 48.8^\circ$, la luz queda completamente confinada por reflexión interna.
+          </figcaption>
+        </figure>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-2">
+            <i class="fas fa-arrow-left"></i> Anterior: Luz &amp; Reflexión
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 3 de 8: Refracción &amp; RIT</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-4">
+            Siguiente: Espejos &amp; Lentes <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 3 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 4: ESPEJOS ESFÉRICOS (CÓNCAVOS Y CONVEXOS) Y LENTES DELGADAS
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-4" aria-labelledby="h4-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">TEORÍA III</div>
+          <div class="sheet-title-group">
+            <h2 id="h4-title">ESPEJOS ESFÉRICOS Y LENTES DELGADAS</h2>
+            <p>Ecuación de Descartes, aumento lateral, rayos principales y aproximación paraxial</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Óptica de Espejos y Lentes</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <!-- ADVERTENCIA PEDAGÓGICA SOBRE RAYOS PARAXIALES REQUERIDA POR EL PROMPT -->
+        <aside class="paraxial-warning-box" role="note">
+          <strong><i class="fas fa-exclamation-triangle"></i> NOTA PEDAGÓGICA: CONDICIONES DE VALIDEZ Y APROXIMACIÓN PARAXIAL</strong>
+          El modelo de rayos notables es una aproximación de la óptica geométrica. Su aplicación a sistemas ópticos ideales se fundamenta en condiciones paraxiales, especialmente cuando se consideran rayos cercanos al eje principal y objetos pequeños respecto de las dimensiones características del sistema.
+        </aside>
+
+        <div class="theory-columns">
+          <div class="theory-block">
+            <h3><i class="fas fa-circle-notch"></i> 6. Espejos Esféricos (Cóncavos y Convexos)</h3>
+            <p>
+              Superficies reflectoras con curvatura esférica de radio $R$, donde el foco principal se ubica a $f = R/2$. Con el <strong>vértice $V$ en el origen de coordenadas ($x=0$)</strong> y el objeto siempre ubicado a la <strong>derecha ($d_o &gt; 0$)</strong>:
+            </p>
+            <ul style="padding-left:1.1rem; font-size:0.76rem; color:#334155;">
+              <li><strong>Espejo Cóncavo ($f &gt; 0$, Convergente):</strong> El centro de curvatura $C$ y el foco $F$ (punto medio entre $C$ y $V$) se encuentran a la <em>derecha del vértice</em> ($x_C &gt; 0, x_F &gt; 0$). Distancia focal positiva ($f &gt; 0$). Forma imágenes reales e invertidas a la derecha ($d_i &gt; 0$) si $d_o &gt; f$, y virtuales derechas detrás ($d_i &lt; 0$) si $d_o &lt; f$.</li>
+              <li><strong>Espejo Convexo ($f &lt; 0$, Divergente):</strong> El centro de curvatura $C$ y el foco $F$ se encuentran a la <em>izquierda del vértice</em> ($x_C &lt; 0, x_F &lt; 0$), con distancia focal negativa ($f &lt; 0$). Los rayos reflejados siempre divergen, produciendo <em>imágenes siempre virtuales, derechas y menores</em> a la izquierda del vértice ($d_i &lt; 0$), ampliando el campo visual panorámico.</li>
+            </ul>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i} \quad;\quad m = -\frac{d_i}{d_o} = \frac{h_i}{h_o}$$
+              <div class="formula-caption">Ecuación de Descartes y aumento lateral</div>
+            </div>
+            <p style="font-size:0.73rem; color:#64748b;">
+              <em>Construcción con dos rayos principales:</em> (1) Rayo paralelo al eje que se refleja pasando por el foco; (2) Rayo focal que se refleja paralelo al eje. Su intersección define la punta de la imagen.
+            </p>
+          </div>
+
+          <div class="theory-block">
+            <h3><i class="fas fa-compress-arrows-alt"></i> 7. Lentes Delgadas y Potencia Óptica</h3>
+            <p>
+              Cuerpos transparentes limitados por dos superficies esféricas (o una plana y una esférica):
+            </p>
+            <ul style="padding-left:1.1rem; font-size:0.76rem; color:#334155;">
+              <li><strong>Lentes Convergentes ($f &gt; 0$):</strong> Más gruesas en el centro que en los bordes (biconvexas). Hacen converger los rayos paralelos en un foco real posterior.</li>
+              <li><strong>Lentes Divergentes ($f &lt; 0$):</strong> Más delgadas en el centro que en los bordes (bicóncavas). Hacen divergir los rayos refractados como si emergieran de un foco virtual anterior.</li>
+            </ul>
+            <div class="formula-box" style="padding:0.35rem;">
+              $$P = \frac{1}{f\text{ (m)}} \quad [\text{Dioptrías (D)}]$$
+              <div class="formula-caption">Potencia dióptrica de una lente</div>
+            </div>
+            <p style="font-size:0.73rem; color:#64748b;">
+              <em>Rayos principales de lentes:</em> (1) Rayo paralelo que refracta pasando por el foco; (2) Rayo que pasa por el centro óptico $O$ sin sufrir ninguna desviación angular.
+            </p>
+          </div>
+        </div>
+
+        <!-- ======================================================================
+             SIMULADOR INTERACTIVO DIRECTO EN HOJA 4: ESPEJOS Y LENTES DELGADAS
+             ====================================================================== -->
+        <div class="s4-simulator-box" id="sheet4SimulatorContainer">
+          <div class="s4-header-bar">
+            <div class="s4-header-title">
+              <i class="fas fa-microscope" style="color:#2563eb;"></i>
+              <span>SIMULADOR INTERACTIVO EN VIVO: ESPEJOS Y LENTES DELGADAS</span>
+            </div>
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              <button type="button" class="btn-chip highlight" id="btnS4SyncToLab" title="Transferir al Laboratorio Multimodal de la Hoja 6">
+                <i class="fas fa-flask"></i> Abrir en Laboratorio Completo (Hoja 6)
+              </button>
+            </div>
+          </div>
+
+          <!-- Selector de Modo de Dispositivo Óptico (5 Opciones) -->
+          <div class="s4-device-selector" role="tablist" aria-label="Selector de sistema óptico de la Hoja 4">
+            <button type="button" class="s4-mode-btn active" data-s4-mode="concave">
+              <i class="fas fa-bowling-ball"></i> Espejo Cóncavo ($f > 0$)
+            </button>
+            <button type="button" class="s4-mode-btn" data-s4-mode="convex">
+              <i class="fas fa-shield-alt"></i> Espejo Convexo ($f < 0$)
+            </button>
+            <button type="button" class="s4-mode-btn" data-s4-mode="plane">
+              <i class="fas fa-arrows-alt-v"></i> Espejo Plano
+            </button>
+            <button type="button" class="s4-mode-btn" data-s4-mode="converging">
+              <i class="fas fa-compress"></i> Lente Convergente ($f > 0$)
+            </button>
+            <button type="button" class="s4-mode-btn" data-s4-mode="diverging">
+              <i class="fas fa-expand"></i> Lente Divergente ($f < 0$)
+            </button>
+          </div>
+
+          <!-- Lienzo Interactivo Canvas para Hoja 4 -->
+          <div class="sim-viewport-container" style="height: 310px; position:relative; border-radius: var(--radius-sm); overflow:hidden;">
+            <canvas id="sheet4OpticalCanvas" width="800" height="310" aria-label="Lienzo interactivo de simulación de espejos y lentes"></canvas>
+            <div class="sim-drag-hint">
+              <i class="fas fa-hand-pointer"></i> Arrastra la flecha naranja o usa los controles deslizantes
+            </div>
+          </div>
+
+          <!-- Barra de Telemetría Dinámica en Hoja 4 -->
+          <div class="s4-telemetry">
+            <div class="telemetry-item">
+              <span class="label">Distancia Imagen ($d_i$)</span>
+              <span class="value" id="s4TelemetryDi">+60.0 cm</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label">Aumento Lateral ($m$)</span>
+              <span class="value" id="s4TelemetryM">-2.00x</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label" id="s4LabelSpecial">Radio de Curvatura ($R$)</span>
+              <span class="value" id="s4TelemetrySpecial">40.0 cm</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label">Naturaleza de la Imagen</span>
+              <span class="value" id="s4TelemetryNature" style="color:#10b981; font-weight:700;">Real — Invertida (Mayor)</span>
+            </div>
+          </div>
+
+          <!-- Panel de Controles Deslizantes en Hoja 4 -->
+          <div class="s4-controls-grid">
+            <div class="control-card">
+              <div class="s4-card-header">
+                <span><i class="fas fa-arrows-alt-h"></i> Posición Objeto ($d_o$)</span>
+                <span class="slider-val" id="s4ValDo">30.0 cm</span>
+              </div>
+              <input type="range" id="s4SliderDo" min="6" max="50" step="0.5" value="30.0" aria-label="Distancia del objeto">
+            </div>
+
+            <div class="control-card">
+              <div class="s4-card-header">
+                <span><i class="fas fa-text-height"></i> Altura Objeto ($h_o$)</span>
+                <span class="slider-val" id="s4ValHo">10.0 cm</span>
+              </div>
+              <input type="range" id="s4SliderHo" min="4" max="16" step="0.2" value="10.0" aria-label="Altura del objeto">
+            </div>
+
+            <div class="control-card">
+              <div class="s4-card-header">
+                <span><i class="fas fa-bullseye"></i> Distancia Focal ($|f|$)</span>
+                <span class="slider-val" id="s4ValF">20.0 cm</span>
+              </div>
+              <input type="range" id="s4SliderF" min="10" max="30" step="0.5" value="20.0" aria-label="Distancia focal">
+            </div>
+
+            <div class="control-card" style="display:flex; align-items:center; justify-content:space-around; padding:0.4rem;">
+              <button type="button" class="btn-chip" id="btnS4Reset" title="Restablecer valores predeterminados">
+                <i class="fas fa-undo"></i> Restablecer
+              </button>
+              <button type="button" class="btn-chip" id="btnS4ToggleTheory" title="Mostrar u ocultar infografía teórica">
+                <i class="fas fa-image"></i> Ver Infografía
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <figure class="image-card" id="fig3Card" style="margin-top:0.6rem; display:none;">
+          <div class="image-card-wrapper" data-lightbox-src="assets/espejos_curvos_concavo_convexo.webp" data-lightbox-caption="Figura 3: Trazado de rayos en espejos esféricos cóncavos y convexos.">
+            <span class="image-zoom-pill"><i class="fas fa-search-plus"></i> Ampliar</span>
+            <img src="assets/espejos_curvos_concavo_convexo.webp" alt="Diagrama de rayos en espejos cóncavos y convexos" loading="lazy" style="height: 185px; object-fit: contain; background:#fff;">
+          </div>
+          <figcaption class="caption" style="font-size:0.72rem;">
+            <strong>Figura 3:</strong> Trazado con dos rayos principales en espejo cóncavo (imagen real, invertida) y espejo convexo (imagen virtual, derecha y reducida).
+          </figcaption>
+        </figure>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-3">
+            <i class="fas fa-arrow-left"></i> Anterior: Refracción &amp; RIT
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 4 de 8: Espejos &amp; Lentes</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-5">
+            Siguiente: Ojo &amp; Visión <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 4 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 5: EL OJO HUMANO COMO SISTEMA ÓPTICO & DEFECTOS DE LA VISIÓN
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-5" aria-labelledby="h5-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">TEORÍA IV</div>
+          <div class="sheet-title-group">
+            <h2 id="h5-title">EL OJO HUMANO Y DEFECTOS DE LA VISIÓN</h2>
+            <p>Anatomía óptica interactiva, formación de imagen, miopía, hipermetropía y corrección</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Óptica de la Visión Humana</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <h3 style="font-size:0.88rem; color:#0f172a; margin-bottom:0.25rem;"><i class="fas fa-eye"></i> 8. Explorador Interactivo de la Anatomía Óptica del Ojo</h3>
+        <p style="font-size:0.76rem; color:#475569; margin-bottom:0.4rem;">
+          Haz clic o pulsa con tu dedo sobre cada estructura ocular para conocer su ubicación anatómica, naturaleza física y función óptica en la formación de la imagen:
+        </p>
+
+        <!-- EXPLORADOR ANATÓMICO INTERACTIVO -->
+        <div class="eye-anatomy-explorer">
+          <div>
+            <div class="eye-structures-list" role="tablist">
+              <button type="button" class="structure-chip-btn active" data-structure-id="cornea"><i class="fas fa-shield-alt"></i> Córnea</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="iris"><i class="fas fa-circle-notch"></i> Iris</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="pupila"><i class="fas fa-dot-circle"></i> Pupila</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="cristalino"><i class="fas fa-gem"></i> Cristalino</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="humor_acuoso"><i class="fas fa-tint"></i> Humor Acuoso</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="humor_vitreo"><i class="fas fa-water"></i> Humor Vítreo</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="retina"><i class="fas fa-broadcast-tower"></i> Retina &amp; Fóvea</button>
+              <button type="button" class="structure-chip-btn" data-structure-id="nervio_optico"><i class="fas fa-network-wired"></i> Nervio Óptico</button>
+            </div>
+          </div>
+          <div class="structure-detail-card" id="structureDetailCard">
+            <h5 id="structureTitle"><i class="fas fa-shield-alt"></i> Córnea</h5>
+            <p id="structurePosition"><strong>Ubicación:</strong> Superficie anterior externa del globo ocular. <em>(Tejido transparente y avascular convexo)</em></p>
+            <p id="structureFunction"><strong>Función Óptica:</strong> Aporta aproximadamente dos tercios (+43 D) de la potencia refractiva total del ojo; enfoca inicialmente los rayos de luz hacia la pupila.</p>
+          </div>
+        </div>
+
+        <div class="theory-columns" style="margin-top:0.65rem;">
+          <div class="theory-block">
+            <h3><i class="fas fa-glasses"></i> 9. Defectos de Refracción Ocular</h3>
+            <p>
+              En un ojo sano (<strong>emétrope</strong>), los rayos paralelos de objetos distantes convergen con precisión sobre la retina sin necesidad de acomodación. Cuando existe una discrepancia entre la potencia refractiva y la longitud del globo ocular, se originan las ametropías:
+            </p>
+            <ul style="padding-left:1.1rem; font-size:0.75rem; color:#334155;">
+              <li><strong>Miopía:</strong> El globo ocular es demasiado largo o la córnea/cristalino tienen un exceso de convergencia. Los rayos procedentes de objetos lejanos convergen <em>delante de la retina</em> (visión lejana borrosa).</li>
+              <li><strong>Hipermetropía:</strong> El globo ocular es corto o la potencia de convergencia es insuficiente. La imagen de objetos cercanos intenta enfocarse <em>detrás de la retina</em> (visión cercana borrosa).</li>
+              <li><strong>Presbicia:</strong> Envejecimiento y pérdida de flexibilidad del cristalino que dificulta la acomodación cercana a partir de los 40 años.</li>
+              <li><strong>Astigmatismo:</strong> Curvatura asimétrica no esférica (tórica) de la córnea que genera dos focos distintos.</li>
+            </ul>
+          </div>
+
+          <div class="theory-block">
+            <h3><i class="fas fa-magic"></i> 10. Corrección Óptica con Lentes Oftálmicas</h3>
+            <p>
+              La física resuelve estas anomalías mediante lentes delgadas compensadoras:
+            </p>
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:0.45rem 0.65rem; font-size:0.75rem; line-height:1.5;">
+              <p><strong>&bull; Corrección de Miopía:</strong> Se formula una <strong>lente divergente (bicóncava)</strong> con potencia negativa ($P &lt; 0\text{ D}$). Esta lente hace que los rayos paralelos diverjan ligeramente antes de entrar al ojo, retrasando el punto focal para que coincida exactamente en la retina.</p>
+              <p style="margin-top:0.3rem;"><strong>&bull; Corrección de Hipermetropía:</strong> Se formula una <strong>lente convergente (biconvexa)</strong> con potencia positiva ($P &gt; 0\text{ D}$). Aporta la convergencia faltante permitiendo que los rayos cercanos se enfoquen sobre la retina.</p>
+            </div>
+          </div>
+        </div>
+
+        <figure class="image-card" id="fig4Card" style="margin-top:0.5rem;">
+          <div class="image-card-wrapper" data-lightbox-src="assets/ojo_humano_lentes_defectos.webp" data-lightbox-caption="Figura 4: Anatomía del ojo humano, miopía, hipermetropía y corrección óptica.">
+            <span class="image-zoom-pill"><i class="fas fa-search-plus"></i> Ampliar</span>
+            <img src="assets/ojo_humano_lentes_defectos.webp" alt="Infografía del ojo humano y lentes correctivas" loading="lazy" style="height: 175px; object-fit: contain; background:#fff;">
+          </div>
+          <figcaption class="caption" style="font-size:0.72rem;">
+            <strong>Figura 4:</strong> Trayectoria de rayos en ojo normal, miopía corregida con lente divergente e hipermetropía corregida con lente convergente.
+          </figcaption>
+        </figure>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-4">
+            <i class="fas fa-arrow-left"></i> Anterior: Espejos &amp; Lentes
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 5 de 8: Ojo &amp; Visión</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-6">
+            Siguiente: Laboratorio Virtual <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 5 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 6: LABORATORIO VIRTUAL INTERACTIVO & ACTIVIDADES EXPERIMENTALES
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-6" aria-labelledby="h6-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">LAB</div>
+          <div class="sheet-title-group">
+            <h2 id="h6-title">LABORATORIO VIRTUAL Y EXPERIMENTACIÓN VIRTUAL</h2>
+            <p>Simulador multimodal en tiempo real con ciclo de indagación: Predice → Experimenta → Observa</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Simulador Óptico 4 en 1</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <div class="simulator-layout">
+          <!-- Selector de Modo de Simulación (4 Módulos) -->
+          <nav class="sim-mode-nav" aria-label="Selector de módulo de simulación óptica">
+            <button type="button" class="sim-mode-tab active" data-mode="snell" id="tabModeSnell">
+              <i class="fas fa-wave-square"></i> 1. Mesa de Refracción &amp; RIT
+            </button>
+            <button type="button" class="sim-mode-tab" data-mode="mirrors" id="tabModeMirrors">
+              <i class="fas fa-circle-notch" style="color:#f59e0b;"></i> 2. Banco de Espejos Curvos (Cóncavo, Convexo, Plano)
+            </button>
+            <button type="button" class="sim-mode-tab" data-mode="lenses" id="tabModeLenses">
+              <i class="fas fa-compress-arrows-alt" style="color:#38bdf8;"></i> 3. Banco de Lentes Delgadas (Convergente, Divergente)
+            </button>
+            <button type="button" class="sim-mode-tab" data-mode="eye" id="tabModeEye">
+              <i class="fas fa-eye" style="color:#10b981;"></i> 4. Ojo Humano &amp; Corrección
+            </button>
+          </nav>
+
+          <!-- Lienzo Interactivo Canvas -->
+          <div class="sim-viewport-container" id="simContainer">
+            <div class="sim-alert-overlay" id="simAlertOverlay" role="alert">
+              <i class="fas fa-exclamation-triangle"></i> ¡REFLEXIÓN INTERNA TOTAL!
+            </div>
+            <canvas id="opticalCanvas" width="800" height="360" aria-label="Lienzo interactivo de simulación física óptica"></canvas>
+          </div>
+
+          <!-- Barra de Telemetría Dinámica -->
+          <div class="sim-telemetry-bar" id="telemetryBar" aria-live="polite">
+            <div class="telemetry-item">
+              <span class="label" id="lblTelemetry1">Ángulo Refracción (θ₂)</span>
+              <span class="value" id="telemetryTheta2">32.0°</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label" id="lblTelemetry2">Ángulo Crítico (θc)</span>
+              <span class="value" id="telemetryCrit">No existe (n₁ ≤ n₂)</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label" id="lblTelemetry3">Velocidad v₁</span>
+              <span class="value" id="telemetryV1">300 × 10³ km/s</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label" id="lblTelemetry4">Velocidad v₂</span>
+              <span class="value" id="telemetryV2">225 × 10³ km/s</span>
+            </div>
+          </div>
+
+          <!-- Diagnóstico Pedagógico Dinámico Exacto según el prompt -->
+          <div style="font-size:0.75rem; background:#f1f5f9; padding:0.4rem 0.8rem; border-radius: var(--radius-sm); border:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+            <span><strong>Estado y Comportamiento Físico:</strong> <span id="telemetryState">Existe rayo refractado (Se acerca a la normal, θ₂ &lt; θ₁)</span></span>
+            <div style="display:flex; gap:0.4rem;">
+              <button type="button" class="btn-chip highlight" id="btnGoCrit" style="display:none;">
+                <i class="fas fa-crosshairs"></i> Ir a Ángulo Crítico (θc)
+              </button>
+              <button type="button" class="btn-chip btn-reset-sim" title="Restablecer parámetros originales">
+                <i class="fas fa-undo"></i> Restablecer Experimento
+              </button>
+            </div>
+          </div>
+
+          <!-- MÓDULO 1: CONTROLES SNELL -->
+          <div class="sim-controls-panel" id="snellControls">
+            <div class="control-column">
+              <div class="control-card">
+                <h4>
+                  <span><i class="fas fa-compass"></i> Ángulo de Incidencia (θ₁)</span>
+                  <span class="slider-val" id="valTheta1">45.0°</span>
+                </h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderTheta1" min="0" max="89.5" step="0.1" value="45.0" aria-label="Ángulo de incidencia">
+                </div>
+                <div class="quick-angles">
+                  <button type="button" class="btn-chip" data-quick-angle="0">0° (Normal)</button>
+                  <button type="button" class="btn-chip" data-quick-angle="30">30°</button>
+                  <button type="button" class="btn-chip" data-quick-angle="45">45°</button>
+                  <button type="button" class="btn-chip" data-quick-angle="60">60°</button>
+                  <button type="button" class="btn-chip" data-angle-adjust="-1">-1°</button>
+                  <button type="button" class="btn-chip" data-angle-adjust="+1">+1°</button>
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-palette"></i> Fuente Láser Monocromática</span></h4>
+                <div style="display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap;">
+                  <button type="button" class="btn-chip laser-color-btn active" data-color="#ff2a4b" data-wavelength="650" style="color:#ef4444;"><i class="fas fa-circle"></i> Rojo (650 nm)</button>
+                  <button type="button" class="btn-chip laser-color-btn" data-color="#10b981" data-wavelength="532" style="color:#10b981;"><i class="fas fa-circle"></i> Verde (532 nm)</button>
+                  <button type="button" class="btn-chip laser-color-btn" data-color="#3b82f6" data-wavelength="450" style="color:#3b82f6;"><i class="fas fa-circle"></i> Azul (450 nm)</button>
+                  <button type="button" class="btn-chip laser-color-btn" data-color="#a855f7" data-wavelength="405" style="color:#a855f7;"><i class="fas fa-circle"></i> Violeta (405 nm)</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-column">
+              <div class="control-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.35rem;">
+                  <h4><span><i class="fas fa-layer-group"></i> Medio 1 (Incidente Superior)</span></h4>
+                  <button type="button" class="btn-chip" id="btnSwapMedia" title="Invertir Medios 1 y 2"><i class="fas fa-exchange-alt"></i> Invertir</button>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+                  <select id="selectMedio1" class="form-control" style="font-size:0.75rem; padding:0.3rem 0.5rem;">
+                    <option value="1.000" selected>Aire / Vacío (n = 1.000)</option>
+                    <option value="1.333">Agua pura (n = 1.333)</option>
+                    <option value="1.361">Etanol (n = 1.361)</option>
+                    <option value="1.520">Vidrio Crown (n = 1.520)</option>
+                    <option value="1.660">Vidrio Flint (n = 1.660)</option>
+                    <option value="2.417">Diamante (n = 2.417)</option>
+                    <option value="custom">Personalizado...</option>
+                  </select>
+                  <span class="slider-val" id="valN1" style="font-size:0.75rem;">1.000</span>
+                </div>
+                <div class="slider-group">
+                  <input type="range" id="sliderN1" min="1.000" max="2.600" step="0.005" value="1.000" aria-label="Índice medio 1">
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-water"></i> Medio 2 (Refractado Inferior)</span> <span class="slider-val" id="valN2" style="font-size:0.75rem;">1.333</span></h4>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem;">
+                  <select id="selectMedio2" class="form-control" style="font-size:0.75rem; padding:0.3rem 0.5rem;">
+                    <option value="1.000">Aire / Vacío (n = 1.000)</option>
+                    <option value="1.333" selected>Agua pura (n = 1.333)</option>
+                    <option value="1.361">Etanol (n = 1.361)</option>
+                    <option value="1.520">Vidrio Crown (n = 1.520)</option>
+                    <option value="1.660">Vidrio Flint (n = 1.660)</option>
+                    <option value="2.417">Diamante (n = 2.417)</option>
+                    <option value="custom">Personalizado...</option>
+                  </select>
+                </div>
+                <div class="slider-group">
+                  <input type="range" id="sliderN2" min="1.000" max="2.600" step="0.005" value="1.333" aria-label="Índice medio 2">
+                </div>
+              </div>
+
+              <div class="toggle-toggles">
+                <label class="toggle-label"><input type="checkbox" id="toggleProtractor" checked> Transportador</label>
+                <label class="toggle-label"><input type="checkbox" id="toggleNormal" checked> Normal Punteada</label>
+                <label class="toggle-label"><input type="checkbox" id="toggleAngles" checked> Arcos θ</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÓDULO 2: CONTROLES ESPEJOS -->
+          <div class="sim-controls-panel" id="mirrorControls" style="display:none;">
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-mirror"></i> Tipo de Espejo</span></h4>
+                <div class="mirror-type-selector">
+                  <button type="button" class="btn-chip active" data-mirror-type="concave"><i class="fas fa-bowling-ball"></i> Cóncavo</button>
+                  <button type="button" class="btn-chip" data-mirror-type="convex"><i class="fas fa-shield-alt"></i> Convexo</button>
+                  <button type="button" class="btn-chip" data-mirror-type="plane"><i class="fas fa-arrows-alt-v"></i> Plano</button>
+                </div>
+                <h4><span><i class="fas fa-arrows-alt-h"></i> Distancia Objeto ($d_o$)</span> <span class="slider-val" id="valMirrorDist">30.0 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderMirrorDist" min="6" max="52" step="0.5" value="30.0" aria-label="Distancia objeto">
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-text-height"></i> Altura Objeto ($h_o$)</span> <span class="slider-val" id="valMirrorHeight">10.8 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderMirrorHeight" min="4" max="16" step="0.2" value="10.8" aria-label="Altura objeto">
+                </div>
+              </div>
+            </div>
+
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-bullseye"></i> Distancia Focal ($|f|$)</span> <span class="slider-val" id="valMirrorFocal">20.0 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderMirrorFocal" min="10" max="30" step="0.5" value="20.0" aria-label="Distancia focal">
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-info-circle"></i> Telemetría de la Imagen</span></h4>
+                <div style="font-size:0.77rem; line-height: 1.6; color:#334155;">
+                  <div><strong>Distancia Imagen ($d_i$):</strong> <span id="telemetryMirrorDi" style="font-weight:700; color:#2563eb;">+60.0 cm</span></div>
+                  <div><strong>Aumento ($M$):</strong> <span id="telemetryMirrorM" style="font-weight:700; color:#10b981;">-2.00x</span></div>
+                  <div><strong>Radio ($R$):</strong> <span id="telemetryMirrorR" style="font-weight:700;">40.0 cm</span></div>
+                  <div><strong>Naturaleza:</strong> <span id="telemetryMirrorNature" style="font-weight:700; color:#0f172a;">Real — Invertida (Mayor)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÓDULO 3: CONTROLES LENTES DELGADAS -->
+          <div class="sim-controls-panel" id="lensControls" style="display:none;">
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-compress-arrows-alt"></i> Tipo de Lente Delgada</span></h4>
+                <div class="mirror-type-selector">
+                  <button type="button" class="btn-chip active" data-lens-type="converging"><i class="fas fa-compress"></i> Convergente ($f &gt; 0$)</button>
+                  <button type="button" class="btn-chip" data-lens-type="diverging"><i class="fas fa-expand"></i> Divergente ($f &lt; 0$)</button>
+                </div>
+                <h4><span><i class="fas fa-arrows-alt-h"></i> Distancia Objeto ($d_o$)</span> <span class="slider-val" id="valLensDist">30.0 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderLensDist" min="8" max="50" step="0.5" value="30.0" aria-label="Distancia objeto lente">
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-text-height"></i> Altura Objeto ($h_o$)</span> <span class="slider-val" id="valLensHeight">10.8 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderLensHeight" min="4" max="16" step="0.2" value="10.8" aria-label="Altura objeto lente">
+                </div>
+              </div>
+            </div>
+
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-bullseye"></i> Distancia Focal ($|f|$)</span> <span class="slider-val" id="valLensFocal">20.0 cm</span></h4>
+                <div class="slider-group">
+                  <input type="range" id="sliderLensFocal" min="10" max="30" step="0.5" value="20.0" aria-label="Distancia focal lente">
+                </div>
+              </div>
+
+              <div class="control-card">
+                <h4><span><i class="fas fa-info-circle"></i> Telemetría de la Lente</span></h4>
+                <div style="font-size:0.77rem; line-height: 1.6; color:#334155;">
+                  <div><strong>Distancia Imagen ($d_i$):</strong> <span id="telemetryLensDi" style="font-weight:700; color:#2563eb;">+60.0 cm</span></div>
+                  <div><strong>Aumento ($M$):</strong> <span id="telemetryLensM" style="font-weight:700; color:#10b981;">-2.00x</span></div>
+                  <div><strong>Potencia Óptica ($P$):</strong> <span id="telemetryLensPower" style="font-weight:700; color:#a855f7;">+5.00 D</span></div>
+                  <div><strong>Naturaleza:</strong> <span id="telemetryLensNature" style="font-weight:700; color:#0f172a;">Real — Invertida (Mayor)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÓDULO 4: CONTROLES OJO HUMANO -->
+          <div class="sim-controls-panel" id="eyeControls" style="display:none;">
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-user-md"></i> Condición Clínica Visual</span></h4>
+                <div class="eye-conditions-selector">
+                  <button type="button" class="eye-cond-btn active" data-condition="normal"><i class="fas fa-check-circle"></i> Emétrope (Normal)</button>
+                  <button type="button" class="eye-cond-btn" data-condition="myopia"><i class="fas fa-search-minus"></i> Miopía (Nearsighted)</button>
+                  <button type="button" class="eye-cond-btn" data-condition="hyperopia"><i class="fas fa-search-plus"></i> Hipermetropía (Farsighted)</button>
+                </div>
+                <button type="button" class="btn-toggle-lens" id="btnToggleEyeLens"><i class="fas fa-glasses"></i> Aplicar Lente Correctiva Oftálmica</button>
+              </div>
+            </div>
+
+            <div class="control-column">
+              <div class="control-card">
+                <h4><span><i class="fas fa-stethoscope"></i> Telemetría Optométrica</span></h4>
+                <div style="font-size:0.77rem; line-height: 1.6; color:#334155;">
+                  <div><strong>Agudeza Visual:</strong> <span id="telemetryEyeAcuity" style="font-weight:700; color:#10b981;">20/20 (Visión Nítida)</span></div>
+                  <div><strong>Plano Focal:</strong> <span id="telemetryEyeFocal" style="font-weight:700; color:#2563eb;">Exactamente en la Fóvea Retiniana</span></div>
+                  <div><strong>Lente Aplicada:</strong> <span id="telemetryEyeLens" style="font-weight:700;">Sin gafa / lente</span></div>
+                  <div style="margin-top:0.3rem; padding:0.35rem 0.6rem; background:#f1f5f9; border-radius:var(--radius-sm); border:1px solid #cbd5e1; font-size:0.73rem;">
+                    <span id="telemetryEyeDiagnostic">Ojo Emétrope: Sistema óptico en equilibrio perfecto.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RETO DE EXPERIMENTACIÓN VIRTUAL: CICLO DE INDAGACIÓN CIENTÍFICA -->
+          <article class="inquiry-cycle-card">
+            <h4><i class="fas fa-flask"></i> Reto de Experimentación e Indagación Científica Guiada</h4>
+            <div class="inquiry-steps-grid">
+              <div class="inquiry-step-item">
+                <span class="step-badge badge-predict">1. Predice</span>
+                <p>¿Qué ocurrirá con el rayo refractado si aumentas el índice $n_2$ manteniendo fijo el ángulo de incidencia?</p>
+              </div>
+              <div class="inquiry-step-item">
+                <span class="step-badge badge-experiment">2. Experimenta</span>
+                <p>En el simulador, cambia Medio 2 de Agua ($n=1.33$) a Diamante ($n=2.42$) con $\theta_1 = 45^\circ$.</p>
+              </div>
+              <div class="inquiry-step-item">
+                <span class="step-badge badge-observe">3. Observa</span>
+                <p>Comprueba cómo el rayo refractado se aproxima bruscamente a la normal punteada vertical.</p>
+              </div>
+              <div class="inquiry-step-item">
+                <span class="step-badge badge-explain">4. Explica</span>
+                <p>Aplica la Ley de Snell: al aumentar $n_2$, $\sin(\theta_2)$ debe disminuir para mantener la igualdad.</p>
+              </div>
+              <div class="inquiry-step-item">
+                <span class="step-badge badge-conclude">5. Concluye</span>
+                <p>Registra en tu cuaderno la tabla de datos y deduce la relación inversa entre rapidez $v$ y desviación.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-5">
+            <i class="fas fa-arrow-left"></i> Anterior: Ojo &amp; Visión
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 6 de 8: Laboratorio Virtual</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-7">
+            Siguiente: Taller Evaluativo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 6 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 7: ACTIVIDADES PARA EL CUADERNO, TALLER EVALUATIVO (5 Y 10 PREGUNTAS)
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-7" aria-labelledby="h7-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">TALLER</div>
+          <div class="sheet-title-group">
+            <h2 id="h7-title">ACTIVIDADES DE CUADERNO Y TALLER EVALUATIVO</h2>
+            <p>Taxonomía de Bloom, desarrollo analítico paso a paso y solución científica</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Evaluación &amp; Razonamiento</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+
+        <!-- SECCIÓN OBLIGATORIA: ACTIVIDADES PARA DESARROLLAR EN EL CUADERNO -->
+        <article class="notebook-activities-section" aria-labelledby="nb-heading">
+          <h4 id="nb-heading" style="display:none;">Actividades para Desarrollar en el Cuaderno</h4>
+          <p style="font-size:0.75rem; color:#475569; margin-bottom:0.4rem;">
+            Antes de diligenciar las preguntas digitales, debes consignar obligatoriamente en tu cuaderno de apuntes o en hojas de block cuadriculado:
+          </p>
+          <div class="notebook-tasks-grid">
+            <div class="notebook-task-card">
+              <h5><i class="fas fa-pencil-ruler"></i> 1. Trazado Geométrico de Rayos</h5>
+              <p>Dibuja con regla, transportador y lápices de colores los esquemas de: (a) Reflexión especular ($\theta_i = \theta_r$); (b) Refracción aire-vidrio; (c) Los tres rayos notables en un espejo cóncavo con objeto entre el centro y el foco.</p>
+            </div>
+            <div class="notebook-task-card">
+              <h5><i class="fas fa-table"></i> 2. Construcción de Tabla Experimental</h5>
+              <p>Genera en el simulador una tabla con 5 ángulos de incidencia ($15^\circ, 30^\circ, 45^\circ, 60^\circ, 75^\circ$) calculando $\sin(\theta_1)$ y $\sin(\theta_2)$ para demostrar experimentalmente la razón constante $n_2/n_1$.</p>
+            </div>
+            <div class="notebook-task-card">
+              <h5><i class="fas fa-calculator"></i> 3. Despejes y Procedimientos Numéricos</h5>
+              <p>Transcribe los cálculos completos con: Datos, Fórmula, Sustitución, Cálculo con calculadora en modo DEG y Resultado final con unidades para los ejercicios de Snell, Descartes y Potencia en dioptrías.</p>
+            </div>
+            <div class="notebook-task-card">
+              <h5><i class="fas fa-pen-alt"></i> 4. Argumentación Científica de Fenómenos</h5>
+              <p>Redacta un párrafo argumentativo explicando por qué la luz disminuye su rapidez en medios densos sin cambiar su frecuencia, y cómo una lente divergente resuelve físicamente la miopía.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SELECTOR DE MODALIDAD: 5 O 10 PREGUNTAS -->
+        <div class="quiz-mode-switch-bar">
+          <div style="font-size:0.78rem; font-weight:700; color:#0f172a;">
+            <i class="fas fa-tasks"></i> Modalidad de Taller:
+            <span class="telemetry-tag-pill pill-real" id="quizTotalBadge" style="margin-left:0.35rem;">10 Preguntas</span>
+          </div>
+          <div class="quiz-mode-pills">
+            <button type="button" class="quiz-mode-btn" id="btnQuizMode5">
+              <i class="fas fa-bolt"></i> Taller Rápido (5 Preguntas)
+            </button>
+            <button type="button" class="quiz-mode-btn active" id="btnQuizMode10">
+              <i class="fas fa-clipboard-check"></i> Taller Completo (10 Preguntas)
+            </button>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+
+          <!-- PREGUNTA 1: RECORDAR/COMPRENDER -->
+          <article class="question-card" id="cardQ1">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-eye"></i> Pregunta 1 (Nivel 1 — Recordar y Comprender)</span>
+              <span class="q-competency">Uso Comprensivo del Conocimiento</span>
+            </div>
+            <p class="question-text">
+              Manipula en el simulador el láser fijando ángulos $\theta_1$ de $20.0^\circ$, $45.0^\circ$ y $75.0^\circ$. Observa el arco reflejado $\theta_r$ y la normal punteada. ¿Cuál enunciado describe con exactitud física la <strong>Ley de la Reflexión</strong>?
+            </p>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="q1" value="A">
+                <span><strong>A)</strong> El ángulo de reflexión $\theta_r$ es exactamente idéntico al ángulo de incidencia $\theta_1$ ($\theta_i = \theta_r$) respecto a la recta normal para cualquier superficie y medio reflectante.</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q1" value="B">
+                <span><strong>B)</strong> El ángulo de reflexión depende del índice de refracción del segundo medio ($n_2$).</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q1" value="C">
+                <span><strong>C)</strong> El ángulo de reflexión siempre es menor que el de incidencia porque parte de la energía se absorbe o dispersa.</span>
+              </label>
+            </div>
+            <div class="q-footer-actions">
+              <button type="button" class="btn-check-q" id="btnCheckQ1"><i class="fas fa-check"></i> Comprobar Respuesta</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ1"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ1"></span>
+            </div>
+            <div class="solution-box-content" id="solQ1">
+              <strong>Solución Científica y Justificación Pedagógica:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Concepto</strong> Ley fundamental de reflexión especular geométrica.</div>
+                <div class="solution-step-item"><strong>Fórmula</strong> $\theta_i = \theta_r$ medidos respecto a la normal.</div>
+                <div class="solution-step-item"><strong>Interpretación</strong> La velocidad y longitud de onda en el medio 1 no varían; por tanto, el ángulo de salida es rigurosamente simétrico respecto a la normal.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 2: APLICAR/EXPLICAR -->
+          <article class="question-card" id="cardQ2">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-tachometer-alt"></i> Pregunta 2 (Nivel 2 — Aplicar y Explicar)</span>
+              <span class="q-competency">Explicación de Fenómenos</span>
+            </div>
+            <p class="question-text">
+              Configura Medio 1 = <strong>Aire ($n_1 = 1.000$)</strong> y Medio 2 = <strong>Vidrio Crown ($n_2 = 1.520$)</strong> con $\theta_1 = 50.0^\circ$. Al pasar la luz del aire al vidrio: ¿Qué ocurre con la rapidez de la onda luminosa y hacia dónde se desvía el rayo respecto a la normal punteada?
+            </p>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="q2" value="A">
+                <span><strong>A)</strong> La rapidez aumenta a $4.5 \times 10^8\text{ m/s}$ y el rayo se aleja de la normal ($\theta_2 &gt; \theta_1$).</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q2" value="B">
+                <span><strong>B)</strong> La rapidez disminuye a $1.97 \times 10^8\text{ m/s}$ ($v = c/n$) y el rayo se acerca a la normal ($\theta_2 &lt; \theta_1$).</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q2" value="C">
+                <span><strong>C)</strong> La rapidez permanece constante a $3.00 \times 10^8\text{ m/s}$ porque los fotones son partículas sin masa en reposo.</span>
+              </label>
+            </div>
+            <div class="q-footer-actions">
+              <button type="button" class="btn-check-q" id="btnCheckQ2"><i class="fas fa-check"></i> Comprobar Respuesta</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ2"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ2"></span>
+            </div>
+            <div class="solution-box-content" id="solQ2">
+              <strong>Solución Científica:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Datos</strong> $c = 3.00 \times 10^8\text{ m/s}$, $n = 1.520$.</div>
+                <div class="solution-step-item"><strong>Fórmula</strong> $v = c / n$.</div>
+                <div class="solution-step-item"><strong>Cálculo</strong> $v = (3.00 \times 10^8) / 1.520 \approx 1.97 \times 10^8\text{ m/s}$.</div>
+                <div class="solution-step-item"><strong>Interpretación</strong> Al retardarse en el medio denso, la longitud de onda se acorta y el haz se cierra hacia la normal ($\theta_2 &lt; \theta_1$).</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 3: CÁLCULO NUMÉRICO DE SNELL -->
+          <article class="question-card" id="cardQ3">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-calculator"></i> Pregunta 3 (Nivel 2 — Cálculo Cuantitativo)</span>
+              <span class="q-competency">Modelación y Uso Comprensivo</span>
+            </div>
+            <p class="question-text">
+              Un haz láser incide desde el aire ($n_1 = 1.000$) sobre agua pura ($n_2 = 1.333$) formando un ángulo $\theta_1 = 45.0^\circ$ con la normal. Aplica la Ley de Snell ($n_1 \sin\theta_1 = n_2 \sin\theta_2$) para hallar el valor teórico de $\theta_2$ y escríbelo aquí:
+            </p>
+            <div class="numeric-input-group">
+              <label for="q3_numericVal" style="font-size:0.8rem; font-weight:700;">Ángulo $\theta_2$ calculado (°):</label>
+              <input type="number" id="q3_numericVal" step="0.1" placeholder="Ej: 32.0" data-q-input="q3.numericVal">
+              <button type="button" class="btn-check-q" id="btnCheckQ3"><i class="fas fa-check"></i> Validar Cálculo</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ3"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ3"></span>
+            </div>
+            <textarea id="q3_stepByStep" class="math-textarea" placeholder="Resume tu procedimiento: sin(θ₂) = (n₁·sin θ₁) / n₂ = (1.000·0.7071) / 1.333 = 0.5305 -> θ₂ = arcsin(0.5305) = 32.0°..." data-q-input="q3.stepByStep"></textarea>
+            <div class="solution-box-content" id="solQ3">
+              <strong>Procedimiento Estructurado de Solución:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Datos</strong> $n_1 = 1.000$, $n_2 = 1.333$, $\theta_1 = 45.0^\circ$.</div>
+                <div class="solution-step-item"><strong>Fórmula</strong> $\sin(\theta_2) = \frac{n_1 \sin\theta_1}{n_2}$.</div>
+                <div class="solution-step-item"><strong>Sustitución</strong> $\sin(\theta_2) = \frac{1.000 \cdot \sin(45.0^\circ)}{1.333} = \frac{0.7071}{1.333} \approx 0.5305$.</div>
+                <div class="solution-step-item"><strong>Resultado</strong> $\theta_2 = \arcsin(0.5305) \approx 32.03^\circ \approx 32.0^\circ$.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 4: INDAGACIÓN DESPEJE -->
+          <article class="question-card" id="cardQ4">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-flask"></i> Pregunta 4 (Nivel 3 — Analizar e Indagar)</span>
+              <span class="q-competency">Indagación Científica</span>
+            </div>
+            <p class="question-text">
+              Un científico hace incidir luz desde el aire ($n_1 = 1.000$) sobre un líquido desconocido con $\theta_1 = 60.0^\circ$. En el transportador mide $\theta_2 = 35.0^\circ$. Despeja $n_2$ de la Ley de Snell ($n_2 = \frac{n_1 \sin\theta_1}{\sin\theta_2}$), calcula su valor y deduce qué sustancia es:
+            </p>
+            <div class="numeric-input-group">
+              <label for="q4_numericVal" style="font-size:0.8rem; font-weight:700;">Índice $n_2$ despejado:</label>
+              <input type="number" id="q4_numericVal" step="0.01" placeholder="Ej: 1.51" data-q-input="q4.numericVal">
+              <label for="q4_substance" style="font-size:0.8rem; font-weight:700;">Sustancia probable:</label>
+              <input type="text" id="q4_substance" placeholder="Ej: Vidrio crown / Aceite de cedro" style="width:190px;" data-q-input="q4.substance">
+              <button type="button" class="btn-check-q" id="btnCheckQ4"><i class="fas fa-check"></i> Validar</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ4"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ4"></span>
+            </div>
+            <textarea id="q4_stepByStep" class="math-textarea" placeholder="Desarrollo de cálculos para transcribir al cuaderno..." data-q-input="q4.stepByStep"></textarea>
+            <div class="solution-box-content" id="solQ4">
+              <strong>Procedimiento Estructurado de Solución:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Datos</strong> $n_1 = 1.000$, $\theta_1 = 60.0^\circ$, $\theta_2 = 35.0^\circ$.</div>
+                <div class="solution-step-item"><strong>Fórmula</strong> $n_2 = \frac{n_1 \sin\theta_1}{\sin\theta_2}$.</div>
+                <div class="solution-step-item"><strong>Cálculo</strong> $n_2 = \frac{1.000 \cdot \sin(60.0^\circ)}{\sin(35.0^\circ)} = \frac{0.8660}{0.5736} \approx 1.51$.</div>
+                <div class="solution-step-item"><strong>Interpretación</strong> Corresponde a vidrio crown ($1.52$) o aceite mineral/cedro ($1.515$).</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 5: INCIDENCIA NORMAL -->
+          <article class="question-card" id="cardQ5">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-arrows-alt-v"></i> Pregunta 5 (Nivel 3 — Argumentar Fenómeno)</span>
+              <span class="q-competency">Explicación de Fenómenos</span>
+            </div>
+            <p class="question-text">
+              Ajusta el láser a $\theta_1 = 0.0^\circ$ (sobre la normal punteada). ¿Qué ocurre con la trayectoria rectilínea del rayo? ¿Existe o no el fenómeno físico de refracción? Justifica teóricamente teniendo en cuenta el cambio de rapidez y longitud de onda:
+            </p>
+            <textarea id="q5_explanation" class="math-textarea" placeholder="Argumentación física: Aunque el ángulo de desviación sea 0°, sí existe refracción porque la rapidez y la longitud de onda de la luz cambian al ingresar al medio..." data-q-input="q5.explanation"></textarea>
+          </article>
+
+          <!-- PREGUNTA 6: ÁNGULO CRÍTICO Y RIT -->
+          <article class="question-card" id="cardQ6">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-infinity"></i> Pregunta 6 (Nivel 3 — Analizar Ángulo Crítico)</span>
+              <span class="q-competency">Uso Comprensivo del Conocimiento</span>
+            </div>
+            <p class="question-text">
+              Configura Medio 1 = <strong>Vidrio Crown ($n_1 = 1.520$)</strong> y Medio 2 = <strong>Aire ($n_2 = 1.000$)</strong>.
+              Aplica la fórmula $\sin(\theta_c) = \frac{n_2}{n_1} \implies \theta_c = \arcsin\left(\frac{1.000}{1.520}\right)$ y calcula el ángulo crítico teórico:
+            </p>
+            <div class="numeric-input-group">
+              <label for="q6_numericCrit" style="font-size:0.8rem; font-weight:700;">Ángulo Crítico $\theta_c$ (°):</label>
+              <input type="number" id="q6_numericCrit" step="0.01" placeholder="Ej: 41.14" data-q-input="q6.numericCrit">
+              <button type="button" class="btn-check-q" id="btnCheckQ6"><i class="fas fa-check"></i> Validar Ángulo</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ6"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ6"></span>
+            </div>
+            <textarea id="q6_observation" class="math-textarea" placeholder="Describe qué observas con el rayo refractado en θ₁ = θc y qué ocurre cuando θ₁ supera ese valor..." data-q-input="q6.observation"></textarea>
+            <div class="solution-box-content" id="solQ6">
+              <strong>Solución Estructurada:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Fórmula</strong> $\sin(\theta_c) = n_2 / n_1$.</div>
+                <div class="solution-step-item"><strong>Sustitución</strong> $\sin(\theta_c) = 1.000 / 1.520 \approx 0.65789$.</div>
+                <div class="solution-step-item"><strong>Resultado</strong> $\theta_c = \arcsin(0.65789) \approx 41.14^\circ$.</div>
+                <div class="solution-step-item"><strong>Interpretación</strong> Para $\theta_1 &gt; 41.14^\circ$, ocurre Reflexión Interna Total: ningún rayo pasa al aire.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 7: ESPEJOS CÓNCAVOS Y DESCARTES -->
+          <article class="question-card" id="cardQ7">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-circle-notch"></i> Pregunta 7 (Nivel 4 — Evaluar y Calcular Espejos)</span>
+              <span class="q-competency">Modelación y Uso Comprensivo</span>
+            </div>
+            <p class="question-text">
+              Un objeto se coloca a una distancia $d_o = 30.0\text{ cm}$ de un espejo esférico cóncavo de distancia focal $f = 20.0\text{ cm}$ (radio $R = 40.0\text{ cm}$).
+              Aplica la ecuación de Descartes ($\frac{1}{f} = \frac{1}{d_o} + \frac{1}{d_i}$) y el aumento ($M = -\frac{d_i}{d_o}$):
+            </p>
+            <div class="numeric-input-group">
+              <label for="q7_numericDi" style="font-size:0.8rem; font-weight:700;">Distancia Imagen $d_i$ (cm):</label>
+              <input type="number" id="q7_numericDi" step="0.1" placeholder="Ej: 60.0" data-q-input="q7.numericDi">
+              <label for="q7_numericM" style="font-size:0.8rem; font-weight:700;">Aumento $M$:</label>
+              <input type="number" id="q7_numericM" step="0.1" placeholder="Ej: -2.0" data-q-input="q7.numericM" style="width:90px;">
+              <button type="button" class="btn-check-q" id="btnCheckQ7"><i class="fas fa-check"></i> Validar Espejo</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ7"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ7"></span>
+            </div>
+            <textarea id="q7_stepByStep" class="math-textarea" placeholder="Despeje: 1/di = 1/20 - 1/30 = (3-2)/60 = 1/60 -> di = +60.0 cm. M = -60/30 = -2.0. Imagen real, invertida y aumentada..." data-q-input="q7.stepByStep"></textarea>
+            <div class="solution-box-content" id="solQ7">
+              <strong>Solución Estructurada de Descartes:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Fórmula</strong> $\frac{1}{d_i} = \frac{1}{f} - \frac{1}{d_o} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}$.</div>
+                <div class="solution-step-item"><strong>Distancia Imagen</strong> $d_i = +60.0\text{ cm}$ (positiva: imagen real delante del espejo).</div>
+                <div class="solution-step-item"><strong>Aumento</strong> $M = -\frac{d_i}{d_o} = -\frac{60}{30} = -2.00$ (negativa: invertida; $|M|=2$: doble tamaño).</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 8: RETROVISORES CONVEXOS ICFES -->
+          <article class="question-card" id="cardQ8">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-car"></i> Pregunta 8 (Nivel 4 — Evaluar Situación ICFES)</span>
+              <span class="q-competency">Ciencia, Tecnología y Sociedad</span>
+            </div>
+            <p class="question-text">
+              Los retrovisores laterales de los vehículos de transporte público en Pereira indican: <em>"Objects in mirror are closer than they appear"</em>. Desde la óptica geométrica, ¿por qué los ingenieros eligen espejos convexos en vez de planos?
+            </p>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="q8" value="A">
+                <span><strong>A)</strong> Porque forman imágenes reales proyectadas sobre el cristal que permiten ver en la noche sin deslumbrarse.</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q8" value="B">
+                <span><strong>B)</strong> Porque forman siempre imágenes virtuales, derechas y reducidas, ofreciendo un campo visual panorámico mucho más amplio para el conductor.</span>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="q8" value="C">
+                <span><strong>C)</strong> Porque invierten la imagen verticalmente para eliminar los puntos ciegos del vehículo.</span>
+              </label>
+            </div>
+            <div class="q-footer-actions">
+              <button type="button" class="btn-check-q" id="btnCheckQ8"><i class="fas fa-check"></i> Comprobar Respuesta</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ8"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ8"></span>
+            </div>
+            <div class="solution-box-content" id="solQ8">
+              <strong>Fundamentación Física:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Propiedad</strong> Los espejos convexos tienen foco virtual ($f &lt; 0$).</div>
+                <div class="solution-step-item"><strong>Ecuación</strong> $d_i = \frac{-|f| \cdot d_o}{d_o + |f|} &lt; 0$ y $0 &lt; M &lt; 1$.</div>
+                <div class="solution-step-item"><strong>Ventaja</strong> Al miniaturizar los objetos ($M &lt; 1$), cabe un ángulo visual mucho mayor en la misma superficie reflectante.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 9: OJO HUMANO Y LENTES CORRECTIVAS -->
+          <article class="question-card" id="cardQ9">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-eye"></i> Pregunta 9 (Nivel 5 — Crear y Argumentar Óptica Ocular)</span>
+              <span class="q-competency">Explicación de Fenómenos</span>
+            </div>
+            <p class="question-text">
+              En el simulador (Módulo 4: Ojo Humano), activa la <strong>Miopía</strong> y la <strong>Hipermetropía</strong>. Selecciona qué tipo de lente corrige cada anomalía visual:
+            </p>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.4rem;">
+              <div style="background:#f8fafc; padding:0.5rem; border-radius:var(--radius-sm); border:1px solid #cbd5e1;">
+                <label style="font-size:0.78rem; font-weight:700; color:#0f172a; display:block; margin-bottom:0.3rem;">1. Para corregir la Miopía:</label>
+                <label style="display:block; font-size:0.75rem; margin-bottom:0.2rem;"><input type="radio" name="q9_myopia" value="divergente"> Lente Divergente (Cóncava, $P &lt; 0$)</label>
+                <label style="display:block; font-size:0.75rem;"><input type="radio" name="q9_myopia" value="convergente"> Lente Convergente (Convexa, $P &gt; 0$)</label>
+              </div>
+              <div style="background:#f8fafc; padding:0.5rem; border-radius:var(--radius-sm); border:1px solid #cbd5e1;">
+                <label style="font-size:0.78rem; font-weight:700; color:#0f172a; display:block; margin-bottom:0.3rem;">2. Para corregir la Hipermetropía:</label>
+                <label style="display:block; font-size:0.75rem; margin-bottom:0.2rem;"><input type="radio" name="q9_hyperopia" value="convergente"> Lente Convergente (Convexa, $P &gt; 0$)</label>
+                <label style="display:block; font-size:0.75rem;"><input type="radio" name="q9_hyperopia" value="divergente"> Lente Divergente (Cóncava, $P &lt; 0$)</label>
+              </div>
+            </div>
+            <div class="q-footer-actions">
+              <button type="button" class="btn-check-q" id="btnCheckQ9"><i class="fas fa-check"></i> Comprobar Diagnóstico</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ9"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ9"></span>
+            </div>
+            <textarea id="q9_explanation" class="math-textarea" placeholder="Explica con tus palabras dónde se forma el foco en cada caso y cómo la lente devuelve la nitidez a la retina..." data-q-input="q9.explanation"></textarea>
+            <div class="solution-box-content" id="solQ9">
+              <strong>Diagnóstico Físico y Óptico:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Miopía</strong> Foco prematuro anterior a la retina. Requiere lente <em>divergente</em> para atrasar el foco.</div>
+                <div class="solution-step-item"><strong>Hipermetropía</strong> Foco posterior a la retina. Requiere lente <em>convergente</em> para adelantar el foco a la fóvea.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PREGUNTA 10: POTENCIA EN DIOPTRÍAS -->
+          <article class="question-card" id="cardQ10">
+            <div class="question-header">
+              <span class="q-badge"><i class="fas fa-glasses"></i> Pregunta 10 (Nivel 5 — Aplicar Potencia en Dioptrías)</span>
+              <span class="q-competency">Indagación Científica &amp; Comunicación</span>
+            </div>
+            <p class="question-text">
+              Un estudiante con miopía tiene su punto remoto a $50\text{ cm}$ ($0.50\text{ m}$). Para enfocar objetos lejanos, su oftalmólogo le formula una lente divergente con distancia focal $f = -0.50\text{ m}$. Aplica la fórmula $P = \frac{1}{f}$ en metros y calcula la potencia de sus gafas en <strong>Dioptrías (D)</strong>:
+            </p>
+            <div class="numeric-input-group">
+              <label for="q10_numericPower" style="font-size:0.8rem; font-weight:700;">Potencia $P$ en Dioptrías (D):</label>
+              <input type="number" id="q10_numericPower" step="0.25" placeholder="Ej: -2.00" data-q-input="q10.numericPower" style="width:120px;">
+              <button type="button" class="btn-check-q" id="btnCheckQ10"><i class="fas fa-check"></i> Validar Potencia</button>
+              <button type="button" class="solution-accordion-btn" data-solution-target="solQ10"><i class="fas fa-calculator"></i> Ver Procedimiento Paso a Paso</button>
+              <span class="feedback-msg" id="feedbackQ10"></span>
+            </div>
+            <textarea id="q10_conclusion" class="math-textarea" placeholder="Síntesis metacognitiva: ¿Por qué la física óptica es crucial para la optometría y la salud visual humana?..." data-q-input="q10.conclusion"></textarea>
+            <div class="solution-box-content" id="solQ10">
+              <strong>Procedimiento Optométrico:</strong>
+              <div class="solution-steps-list">
+                <div class="solution-step-item"><strong>Datos</strong> $f = -50\text{ cm} = -0.50\text{ m}$.</div>
+                <div class="solution-step-item"><strong>Fórmula</strong> $P = 1 / f$.</div>
+                <div class="solution-step-item"><strong>Cálculo</strong> $P = 1 / (-0.50\text{ m}) = -2.00\text{ D}$.</div>
+                <div class="solution-step-item"><strong>Interpretación</strong> El signo negativo indica lente bicóncava / divergente correctora de miopía de 2 dioptrías.</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- SECCIÓN: ¿QUÉ APRENDISTE? (METACOGNICIÓN FINAL REQUERIDA POR EL PROMPT) -->
+        <article class="metacognition-card">
+          <h4><i class="fas fa-brain"></i> ¿QUÉ APRENDISTE? — Reflexión Metacognitiva Final</h4>
+          <div class="reflection-prompts-grid">
+            <div class="reflection-item">
+              <p>1. ¿Qué fenómeno óptico te resultó más interesante y qué variable tuvo mayor influencia en el rayo?</p>
+              <span style="font-size:0.72rem; color:#64748b;">Consigna tu reflexión crítica en el cuaderno de física.</span>
+            </div>
+            <div class="reflection-item">
+              <p>2. ¿Cuándo es físicamente posible la reflexión interna total y cómo se relaciona con la fibra óptica?</p>
+              <span style="font-size:0.72rem; color:#64748b;">Verifica la condición matemática estricta $n_1 > n_2$.</span>
+            </div>
+            <div class="reflection-item">
+              <p>3. ¿Cómo explicas el funcionamiento de una lente correctora en un ojo con miopía o hipermetropía?</p>
+              <span style="font-size:0.72rem; color:#64748b;">Describe la modificación de la vergencia luminosa.</span>
+            </div>
+            <div class="reflection-item">
+              <p>4. ¿Por qué el modelo de rayos paraxiales es una aproximación y cuáles son sus límites de aplicación?</p>
+              <span style="font-size:0.72rem; color:#64748b;">Recuerda la condición de objetos pequeños y ángulos pequeños.</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-6">
+            <i class="fas fa-arrow-left"></i> Anterior: Laboratorio Virtual
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 7 de 8: Taller &amp; Metacognición</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-8">
+            Siguiente: Entrega &amp; PDF <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 7 de 8</div>
+      </footer>
+    </section>
+
+    <!-- ----------------------------------------------------------------------
+         HOJA 8: SÍNTESIS, RÚBRICA DEL MEN, RESULTADOS & EXPORTACIÓN A PDF
+         ---------------------------------------------------------------------- -->
+    <section class="sheet-page" id="sheet-8" aria-labelledby="h8-title">
+      <header class="sheet-header">
+        <div class="sheet-header-left">
+          <div class="logo-badge">EVAL</div>
+          <div class="sheet-title-group">
+            <h2 id="h8-title">SÍNTESIS, RÚBRICA DE EVALUACIÓN Y ENTREGA</h2>
+            <p>Criterios de valoración del aprendizaje y generación de reporte oficial en PDF</p>
+          </div>
+        </div>
+        <div class="sheet-header-right">
+          <strong>GUÍA-TALLER N° 04</strong>
+          <span>Cierre de Práctica</span>
+        </div>
+      </header>
+
+      <div class="sheet-body">
+        <article class="synthesis-card">
+          <h3><i class="fas fa-clipboard-check"></i> Rúbrica Oficial de Desempeño y Criterios de Evaluación (MEN)</h3>
+          <p style="font-size:0.76rem; color:#475569; margin-bottom: 0.5rem;">
+            Tu calificación definitiva integrará la entrega digital interactiva y la transcripción manual con sustentación rigurosa en tu cuaderno de física:
+          </p>
+
+          <table class="rubric-table" summary="Rúbrica analítica de evaluación para la práctica de óptica">
+            <thead>
+              <tr>
+                <th style="width:25%;">Criterio</th>
+                <th style="width:25%;">Superior (4.6 - 5.0)</th>
+                <th style="width:25%;">Alto (4.0 - 4.5)</th>
+                <th style="width:25%;">Básico / Bajo (&lt; 4.0)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Leyes de Snell y RIT</strong></td>
+                <td>Aplica la fórmula con despejes algebraicos impecables, unidades y exactitud con el simulador.</td>
+                <td>Resuelve los ejercicios numéricos con mínimos errores algebraicos.</td>
+                <td>Presenta dificultades en el despeje de funciones trigonométricas inversas.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Espejos y Lentes</strong></td>
+                <td>Calcula con precisión $d_i$ y aumento $M$, clasificando la imagen y trazando los dos rayos principales.</td>
+                <td>Aplica la fórmula de Descartes pero titubea al interpretar imágenes virtuales.</td>
+                <td>Confunde espejos cóncavos con convexos o comete errores de signos.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Ojo Humano y Visión</strong></td>
+                <td>Identifica las causas anatómicas de miopía e hipermetropía, calculando la potencia en dioptrías ($P=1/f$).</td>
+                <td>Reconoce las lentes correctoras pero requiere apoyo en el cálculo de potencia.</td>
+                <td>Confunde las lentes convergentes con las divergentes en la corrección visual.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Trabajo en Cuaderno</strong></td>
+                <td>Transcripción manual pulcra, esquemas a color trazados con regla y transportador.</td>
+                <td>Transcripción manual ordenada con gráficos legibles.</td>
+                <td>Entrega incompleta, sin esquemas o sin procedimientos paso a paso.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:0.6rem 0.9rem; font-size:0.8rem; color:#1e3a8a; margin-bottom:0.75rem;" id="summaryStudentInfo">
+          Cargando datos del estudiante...
+        </div>
+
+        <article class="submission-box">
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: #eff6ff; color: #2563eb; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">
+            <i class="fas fa-paper-plane"></i>
+          </div>
+          <h3>Finalización y Entrega del Taller</h3>
+          <p>
+            Al pulsar el botón a continuación, podrás generar tu reporte de resultados completo, copiarlo para remitirlo al docente por <strong>WhatsApp o Correo Institucional</strong>, y descargar el documento oficial en <strong>formato PDF en tamaño Carta</strong> para tu portafolio académico.
+          </p>
+
+          <div class="submission-actions">
+            <button type="button" class="btn-action btn-primary" id="btnSubmitResults" style="font-size:0.92rem; padding:0.65rem 1.4rem;">
+              <i class="fas fa-check-double"></i> Enviar / Generar Reporte de Resultados
+            </button>
+            <button type="button" class="btn-action btn-pdf" id="btnExportPdfMain" style="font-size:0.92rem; padding:0.65rem 1.4rem;">
+              <i class="fas fa-file-pdf"></i> Exportar Taller a PDF (Tamaño Carta Oficial)
+            </button>
+          </div>
+
+          <span id="saveIndicator" style="font-size:0.75rem; color:#16a34a; font-weight:700;">Respuestas guardadas automáticamente en tu navegador</span>
+          <p class="copyright-note" style="font-size:0.78rem;opacity:0.8;text-align:center;margin:1.2rem 0 0.4rem;line-height:1.5">© 2026 Luis Hernando Blandón Dávila · Todos los derechos reservados. Prohibida su copia, modificación o distribución sin autorización del autor.<br>Guía elaborada por el autor a partir de sus guías de clase y de las referencias citadas; ilustraciones generadas con apoyo de inteligencia artificial.</p>
+        </article>
+
+        <div class="sheet-nav-controls">
+          <button type="button" class="btn-nav-step" data-nav-target="sheet-7">
+            <i class="fas fa-arrow-left"></i> Anterior: Taller &amp; Metacognición
+          </button>
+          <span style="font-size:0.75rem; color:#64748b; font-weight:600;">Sección 8 de 8: Cierre y Exportación</span>
+          <button type="button" class="btn-nav-step primary" data-nav-target="sheet-1">
+            <i class="fas fa-home"></i> Volver al Inicio
+          </button>
+        </div>
+      </div>
+
+      <footer class="sheet-footer">
+        <div class="footer-coordinator">
+          <i class="fas fa-user-tie"></i> © 2026 Luis Hernando Blandón Dávila — Coordinador de Física PAFEM
+        </div>
+        <div class="footer-page-num">Página 8 de 8</div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL DE ENVÍO Y REPORTE DE RESULTADOS
+       ======================================================================== -->
+  <aside class="modal-backdrop" id="modalSubmission" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="modalTitle"><i class="fas fa-clipboard-list"></i> Reporte Oficial de Entrega de Taller</h3>
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <p style="font-size:0.8rem; color:#475569; margin-bottom: 0.5rem;">
+        Revisa el resumen estructurado de tus respuestas, cálculos y observaciones experimentales:
+      </p>
+
+      <div class="report-preview-box" id="reportPreviewText"></div>
+
+      <div style="display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 1rem;">
+        <button type="button" class="btn-action btn-secondary" id="btnDownloadTxt">
+          <i class="fas fa-download"></i> Descargar Archivo (.txt)
+        </button>
+        <button type="button" class="btn-action btn-primary" id="btnCopyReport">
+          <i class="fas fa-copy"></i> Copiar para WhatsApp / Correo
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       MODAL LIGHTBOX PARA VISUALIZACIÓN EN ALTA DEFINICIÓN (PANTALLA COMPLETA)
+       ======================================================================== -->
+  <aside class="lightbox-modal" id="imageLightboxModal" role="dialog" aria-modal="true" aria-label="Visualizador de imagen en alta resolución">
+    <div class="lightbox-content">
+      <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" title="Cerrar vista">&times;</button>
+      <img id="lightboxImg" src="" alt="Ilustración científica ampliada">
+      <div class="lightbox-footer">
+        <span id="lightboxCaption" style="font-weight:600;"></span>
+        <button type="button" class="btn-action btn-secondary" id="lightboxDownloadBtn" style="padding:0.35rem 0.8rem; font-size:0.75rem;">
+          <i class="fas fa-download"></i> Descargar Imagen
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Botón Flotante Volver Arriba -->
+  <button type="button" class="btn-floating-top" id="btnBackToTop" title="Volver al inicio" aria-label="Volver al inicio" style="display:none;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts de la Aplicación -->
+  <script src="js/simulation.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
